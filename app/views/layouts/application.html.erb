@@ -55,7 +55,7 @@
               <% if current_user %>
                 <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
               <% else %>
-                <%#= link_to 'Sign in', '#' %>
+                <%= link_to 'Sign in', '#' %>
               <% end %>
             </li>
           </ul>
