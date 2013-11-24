@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @submission.user_id
+%p
+  %b Name:
+  = @submission.name
+%p
+  %b Rating:
+  = @submission.rating
+%p
+  %b Orientation:
+  = @submission.orientation
+%p
+  %b Description:
+  = @submission.description
+
+= link_to 'Edit', edit_submission_path(@submission)
+\|
+= link_to 'Back', submissions_path

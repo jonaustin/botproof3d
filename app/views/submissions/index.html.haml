@@ -1,0 +1,27 @@
+%h1 Listing submissions
+
+%table
+  %tr
+    %th User
+    %th Name
+    %th Rating
+    %th Orientation
+    %th Description
+    %th
+    %th
+    %th
+
+  - @submissions.each do |submission|
+    %tr
+      %td= submission.user_id
+      %td= submission.name
+      %td= submission.rating
+      %td= submission.orientation
+      %td= submission.description
+      %td= link_to 'Show', submission
+      %td= link_to 'Edit', edit_submission_path(submission)
+      %td= link_to 'Destroy', submission, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Submission', new_submission_path
