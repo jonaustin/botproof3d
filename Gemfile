@@ -17,6 +17,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'thin'
 gem 'therubyracer'
+gem 'carrierwave'
 
 group :development do
   gem 'capistrano', '~> 2.15'
