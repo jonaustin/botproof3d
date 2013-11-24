@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
 
 
   def setup_info
-    @title = 'Bot Proof — 3D Printer Model Repair'
+    @title = 'BotProof — 3D Printer Model Repair'
   end
 end
