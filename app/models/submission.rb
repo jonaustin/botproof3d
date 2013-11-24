@@ -1,7 +1,8 @@
 class Submission < ActiveRecord::Base
   attr_accessor :apis
 
-  def initialize
+  def initialize *args
+
     self.apis = %W(Thingiverse Ponoko Shapeways Github)
     super
   end
