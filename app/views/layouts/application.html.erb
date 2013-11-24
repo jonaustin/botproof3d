@@ -51,7 +51,13 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+            <li>
+              <% if current_user %>
+                <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+              <% else %>
+                <%= link_to 'Sign in', '#' %>
+              <% end %>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -59,18 +65,7 @@
 
     <div class="container">
       <%= yield %>
-
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>All the Models in All the Markets</h1>
-        <p><strong>One-step clean-up and publish.</strong> Connect to all the STL marketplaces and
-        upload your files. We’ll clean them up and post them online.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Add yours &raquo;</a>
-        </p>
-      </div>
-
-    </div> <!-- /container -->
+    </div>
 
 
     <!-- Bootstrap core JavaScript
