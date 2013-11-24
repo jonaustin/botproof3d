@@ -18,14 +18,12 @@
 
 %p
   %b Mesh:
-  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/hand_broken.stl"
+  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image}.stl"
 
 
 %p
   %b Repaired Mesh:
-  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/hand_fixed.stl"
-  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/fitbit%20si%20bracelet.stl?height=400&width=400"
-  = javascript_include_tag "https://embed.github.com/view/3d/skjain2/3DModels/master/fitbit%20si%20bracelet.stl?height=400&width=400"
+  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image}_repaired.stl"
 
 = link_to 'Edit', edit_submission_path(@submission)
 \|

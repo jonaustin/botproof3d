@@ -74,14 +74,21 @@ class SubmissionsController < ApplicationController
     end
 
     def create_repaired_mesh
+      image_name = @submission.image.to_s.split("/").last
       image_path = "#{Rails.root}/public/#{@submission.image}"
-      repair_image = "#{@submission.image}_repaired.stl"
-      repair_path = "#{image_path}#{@submission.repair_image}"
+      `mkdir #{Rails.root}/meshes/#{@submission.id}`
+      #`cp #{image_path} #{Rails.root}/meshes/#{@submission.id}`
+      command = "#{get_binary_path} -i #{image_path} -o #{Rails.root}/meshes/#{@submission.id}/#{image_name}.stl"
+      `#{command}`
+      repair_path = "#{Rails.root}/meshes/#{@submission.id}/#{image_name}"
       mlx_path = "#{Rails.root}/public/mxls/holes.mlx"
       binary_path = get_binary_path
-      command = "#{binary_path} -i #{image_path} -o #{repair_path}.stl -s #{mlx_path} -om vc fq wn"
+      command = "#{binary_path} -i #{image_path} -o #{repair_path}_repaired.stl -s #{mlx_path} -om vc fq wn"
       `#{command}`
-      @submission.repair_image = repair_image
+      `git add #{Rails.root}/meshes`
+      `cd #{Rails.root} && git commit -m '#{@submission.id} - #{image_name}'`
+      `cd #{Rails.root} && git push`
+      @submission.repair_image = repair_path
       @submission.save
     end
 
