@@ -14,7 +14,7 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/new
   def new
-    redirect_to new_user_session_path
+    redirect_to new_user_session_path unless current_user
     @submission = Submission.new
   end
 
