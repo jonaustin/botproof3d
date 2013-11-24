@@ -14,6 +14,7 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/new
   def new
+    redirect_to new_user_session_path
     @submission = Submission.new
   end
 
@@ -87,11 +88,12 @@ class SubmissionsController < ApplicationController
       `#{command}`
       @submission.repair_image = repair_path
       @submission.save
+      sleep 2
     end
 
     def get_binary_path
       if Rails.env == 'production'
-        meshlabserver = 'xvfb-run /usr/bin/meshlabserver'
+        meshlabserver = 'xvfb-run -a /usr/bin/meshlabserver'
       else
         meshlabserver = '/usr/local/bin/meshlabserver'
       end
