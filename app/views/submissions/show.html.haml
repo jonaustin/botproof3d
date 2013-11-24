@@ -20,6 +20,10 @@
   %b Mesh:
   = image_tag @submission.image
 
+%p
+  %b Repaired Mesh:
+  = image_tag @submission.repair_image
+
 = link_to 'Edit', edit_submission_path(@submission)
 \|
 = link_to 'Back', submissions_path

@@ -28,6 +28,7 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
+        create_repaired_mesh
         format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
         format.json { render action: 'show', status: :created, location: @submission }
       else
@@ -70,5 +71,25 @@ class SubmissionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
       params.require(:submission).permit(:user_id, :name, :rating, :orientation, :description, :image)
+    end
+
+    def create_repaired_mesh
+      image_path = "#{Rails.root}/public/#{@submission.image}"
+      repair_image = "#{@submission.image}_repaired.stl"
+      repair_path = "#{image_path}#{@submission.repair_image}"
+      mlx_path = "#{Rails.root}/public/mxls/holes.mlx"
+      binary_path = get_binary_path
+      command = "#{binary_path} -i #{image_path} -o #{repair_path}.stl -s #{mlx_path} -om vc fq wn"
+      `#{command}`
+      @submission.repair_image = repair_image
+      @submission.save
+    end
+
+    def get_binary_path
+      if Rails.env == 'production'
+        meshlabserver = 'xvfb-run /usr/bin/meshlabserver'
+      else
+        meshlabserver = '/usr/local/bin/meshlabserver'
+      end
     end
 end

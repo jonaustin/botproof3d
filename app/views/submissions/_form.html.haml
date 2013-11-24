@@ -2,7 +2,7 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :user_id
+    = f.hidden_field :user_id, value: current_user.id
     = f.label :image
     = f.file_field :image
     = f.input :name
