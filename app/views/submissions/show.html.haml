@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @submission.user.name
+%p
+  %b Name:
+  = @submission.name
+%p
+  %b Rating:
+  = @submission.rating
+%p
+  %b Orientation:
+  = @submission.orientation
+%p
+  %b Description:
+  = @submission.description
+
+%p
+  %b Mesh:
+  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}.stl"
+
+
+%p
+  %b Repaired Mesh:
+  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}_repaired.stl"
+
+= link_to 'Edit', edit_submission_path(@submission)
+\|
+= link_to 'Back', submissions_path

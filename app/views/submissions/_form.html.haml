@@ -1,0 +1,14 @@
+= simple_form_for(@submission, html: {:multipart => true}) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.hidden_field :user_id, value: current_user.id
+    = f.label :image
+    = f.file_field :image
+    = f.input :name
+    = f.input :rating
+    = f.input :orientation
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

@@ -17,8 +17,17 @@ gem 'rolify'
 gem 'simple_form'
 gem 'thin'
 gem 'therubyracer'
+gem 'carrierwave'
 
 group :development do
+  gem 'capistrano', '~> 2.15'
+  gem 'capistrano-ext'
+  gem 'rvm-capistrano'
+end
+
+group :development do
+  gem 'pry-rails'
+  gem 'pry-debugger', '~> 0.2'  # adds next,step,continue,etc
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
