@@ -16,6 +16,10 @@
   %b Description:
   = @submission.description
 
+%p
+  %b Mesh:
+  = image_tag @submission.image
+
 = link_to 'Edit', edit_submission_path(@submission)
 \|
 = link_to 'Back', submissions_path

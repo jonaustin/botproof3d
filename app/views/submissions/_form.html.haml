@@ -1,8 +1,10 @@
-= simple_form_for(@submission) do |f|
+= simple_form_for(@submission, html: {:multipart => true}) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :user_id
+    = f.label :image
+    = f.file_field :image
     = f.input :name
     = f.input :rating
     = f.input :orientation
