@@ -37,16 +37,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">BotProof 3D</a>
+          <a class="brand" href="#"><%= image_tag "bp3d_logo.png", size: "32", alt: "Logo"  %> BotProof 3D</a>
           <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
+            <ul class="nav" style="margin-top:5px">
+              <li><a href="/">Home</a></li>
               <% if current_user %>
                 <li><%= link_to "My Submissions", "/users/#{current_user.id}/submissions" %></li>
               <% end %>
             </ul>
             <div class="navbar-text pull-right">
-              <ul class='nav'>
+              <ul class='nav' style="margin-top:5px">
                 <li>
                 <% if current_user %>
                   <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
