@@ -75,23 +75,38 @@ class SubmissionsController < ApplicationController
     end
 
     def create_repaired_mesh
-      image_name = @submission.image.to_s.split("/").last
-      image_path = "#{Rails.root}/public/#{@submission.image}"
       `mkdir #{Rails.root}/meshes/#{@submission.id}`
       #`cp #{image_path} #{Rails.root}/meshes/#{@submission.id}`
+      generate
+      logger.info `rsync -aP /opt/nginx/apps/botproof3d.co/current/meshes/ /tmp/botproof/meshes/`
+      logger.info `cd /tmp/botproof/ && git add meshes`
+      @submission.save
+
+      sleep 5
+    end
+
+    def generate
       command = "#{get_binary_path} -i #{image_path} -o #{Rails.root}/meshes/#{@submission.id}/#{image_name}.stl"
       `#{command}`
+
       repair_path = "#{Rails.root}/meshes/#{@submission.id}/#{image_name}"
       mlx_path = "#{Rails.root}/public/mxls/holes.mlx"
       binary_path = get_binary_path
       command = "#{binary_path} -i #{image_path} -o #{repair_path}_repaired.stl -s #{mlx_path} -om vc fq wn"
       `#{command}`
-      logger.info `rsync -aP /opt/nginx/apps/botproof3d.co/current/meshes/ /tmp/botproof/meshes/`
-      logger.info `cd /tmp/botproof/ && git add meshes`
       @submission.repair_image = repair_path
-      @submission.save
+    end
 
-      sleep 5
+    def convert_stl_to_obj
+      command = "#{get_binary_path} -i #{image_path} -o #{Rails.root}/meshes/#{@submission.id}/#{image_name}.obj"
+    end
+
+    def image_name
+      @submission.image.to_s.split("/").last
+    end
+
+    def image_path
+      "#{Rails.root}/public/#{@submission.image}"
     end
 
     def get_binary_path
