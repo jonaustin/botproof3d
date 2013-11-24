@@ -6,5 +6,12 @@
   = f.input :email, :required => true
   = f.input :password, :required => true
   = f.input :password_confirmation, :required => true
+  %br
+  %p 
+    By signing up for an account, you agree to Bot Proof's
+    = link_to "Terms of Service", "#"
+    and
+    = link_to "Privacy Policy", "#"
+
   = f.button :submit, 'Sign up', :class => 'btn-primary'
 = render "devise/shared/links"
