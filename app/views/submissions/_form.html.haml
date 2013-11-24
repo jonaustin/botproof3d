@@ -6,7 +6,7 @@
     = f.label 'Mesh'
     = f.file_field :image
     = f.input :name
-    = f.input :rating
+    -#= f.input :rating
     = f.input :orientation
     = f.input :description
     = f.input :apis, :collection => @submission.apis, :as => :check_boxes, label: "Upload my design to the following services"
