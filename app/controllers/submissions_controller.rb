@@ -14,7 +14,7 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/new
   def new
-    redirect_to new_user_session_path
+    redirect_to new_user_session_path unless current_user
     @submission = Submission.new
   end
 
@@ -86,9 +86,12 @@ class SubmissionsController < ApplicationController
       binary_path = get_binary_path
       command = "#{binary_path} -i #{image_path} -o #{repair_path}_repaired.stl -s #{mlx_path} -om vc fq wn"
       `#{command}`
+      logger.info `rsync -aP /opt/nginx/apps/botproof3d.co/current/meshes/ /tmp/botproof/meshes/`
+      logger.info `cd /tmp/botproof/ && git add meshes`
       @submission.repair_image = repair_path
       @submission.save
-      sleep 2
+
+      sleep 5
     end
 
     def get_binary_path
