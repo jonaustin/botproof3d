@@ -85,9 +85,14 @@ class SubmissionsController < ApplicationController
       binary_path = get_binary_path
       command = "#{binary_path} -i #{image_path} -o #{repair_path}_repaired.stl -s #{mlx_path} -om vc fq wn"
       `#{command}`
-      `git add #{Rails.root}/meshes`
+
+      `cd #{Rails.root} && git checkout master && git pull`
+      `cd #{Rails.root} && git add #{Rails.root}/meshes`
       `cd #{Rails.root} && git commit -m '#{@submission.id} - #{image_name}'`
       `cd #{Rails.root} && git push`
+      `cd #{Rails.root} && git checkout deploy`
+
+
       @submission.repair_image = repair_path
       @submission.save
     end
