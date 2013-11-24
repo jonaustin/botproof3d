@@ -25,7 +25,7 @@
   %b Repaired Mesh:
   = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}_repaired.stl"
 
-  = link_to "Download", ("/public/assets/meshes/" + @submission.repair_image.split("/meshes/").last)
+  = link_to "Download", ("/assets/meshes/" + @submission.repair_image.split("/meshes/").last)
 
 = link_to 'Edit', edit_submission_path(@submission)
 \|
