@@ -1,6 +1,13 @@
 // import the CSS framework
 @import "bootstrap";
 
+// For the fixed navbar layout.
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+}
+
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
