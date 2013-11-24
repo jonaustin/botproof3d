@@ -16,16 +16,50 @@
   %b Description:
   = @submission.description
 
-%p
-  %b Mesh:
-  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}.stl"
-  = link_to "Download Original Mesh", @submission.image.to_s
+- height = 300
+- width = 500
+%div.row
+  %div.span5
+    %p.text-center
+      %b Original Mesh:
+    = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}.stl?height=#{height}&width=#{width}"
+    = link_to "Download Original Mesh", @submission.image.to_s
 
-%p
-  %b Repaired Mesh:
-  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}_repaired.stl"
-  = link_to "Download Repaired Mesh", ("/assets/meshes/" + @submission.repair_image.split("/meshes/").last)
+  %div.span5.offset2
+    %p.text-center
+      %b Repaired Mesh:
+    = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}_repaired.stl?height=#{height}&width=#{width}"
+    = link_to "Download Repaired Mesh", ("/assets/meshes/" + @submission.repair_image.split("/meshes/").last)
 
-= link_to 'Edit', edit_submission_path(@submission)
-\|
-= link_to 'Back', submissions_path
+%br
+%br
+
+%h5 
+  Services uploaded to:
+  %ul.unstyled
+    %li
+      = image_tag "https://www.google.com/s2/favicons?domain=github.com"
+      Github
+    %li
+      = image_tag "https://www.google.com/s2/favicons?domain=thingiverse.com"
+      Thingiverse
+    %li
+      = image_tag "https://www.google.com/s2/favicons?domain=ponoko.com"
+      Ponoko
+    %li
+      = image_tag "https://www.google.com/s2/favicons?domain=shapeways.com"
+      Shapeways
+
+%h5 
+  Algorithms applied:
+%ul
+  %li.text-success Close holes
+  %li.muted Remove duplicated faces
+  %li.muted Remove duplicated vertex
+  %li.muted Remove Zero Area faces
+  %li.muted Select non-manifold edges -> Remove
+  %li.muted Select non-manifold vertices -> Remove
+  %li.muted Remove unreferenced vertex
+  %li.muted Remove Isolated Pieces
+  %li.muted Select faces with edges longer than a value
+  %li.muted Select border faces
