@@ -89,10 +89,10 @@ class SubmissionsController < ApplicationController
       command = "#{get_binary_path} -i #{image_path} -o #{Rails.root}/meshes/#{@submission.id}/#{image_name}.stl"
       `#{command}`
 
-      repair_path = "#{Rails.root}/meshes/#{@submission.id}/#{image_name}"
+      repair_path = "#{Rails.root}/meshes/#{@submission.id}/#{image_name}_repaired.stl"
       mlx_path = "#{Rails.root}/public/mxls/holes.mlx"
       binary_path = get_binary_path
-      command = "#{binary_path} -i #{image_path} -o #{repair_path}_repaired.stl -s #{mlx_path} -om vc fq wn"
+      command = "#{binary_path} -i #{image_path} -o #{repair_path} -s #{mlx_path} -om vc fq wn"
       `#{command}`
       @submission.repair_image = repair_path
     end
