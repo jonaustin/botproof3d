@@ -19,13 +19,12 @@
 %p
   %b Mesh:
   = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}.stl"
-
+  = link_to "Download Original Mesh", @submission.image.to_s
 
 %p
   %b Repaired Mesh:
   = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}_repaired.stl"
-
-  = link_to "Download", ("/assets/meshes/" + @submission.repair_image.split("/meshes/").last)
+  = link_to "Download Repaired Mesh", ("/assets/meshes/" + @submission.repair_image.split("/meshes/").last)
 
 = link_to 'Edit', edit_submission_path(@submission)
 \|
