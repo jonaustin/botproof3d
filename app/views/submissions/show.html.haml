@@ -18,12 +18,12 @@
 
 %p
   %b Mesh:
-  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image}.stl"
+  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}.stl"
 
 
 %p
   %b Repaired Mesh:
-  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image}_repaired.stl"
+  = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}_repaired.stl"
 
 = link_to 'Edit', edit_submission_path(@submission)
 \|
