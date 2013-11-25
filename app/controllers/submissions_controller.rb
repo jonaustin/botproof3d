@@ -4,7 +4,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.json
   def index
-    if user = User.find(params[:user_id])
+    if params[:user_id] && user = User.find(params[:user_id])
       @submissions = Submission.find_all_by_user_id user.id
     else
       @submissions = Submission.all
@@ -18,7 +18,6 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/new
   def new
-    redirect_to new_user_session_path unless current_user
     @submission = Submission.new
   end
 

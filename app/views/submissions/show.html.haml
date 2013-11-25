@@ -1,8 +1,9 @@
 %p#notice= notice
 
 %p
-  %b User:
-  = @submission.user.name
+  - if @submission.user_id
+    %b User:
+    = @submission.user.name
 %p
   %b Name:
   = @submission.name
@@ -34,7 +35,7 @@
 %br
 %br
 
-%h5 
+%h5
   Services uploaded to:
   %ul.unstyled
     %li
@@ -50,7 +51,7 @@
       = image_tag "https://www.google.com/s2/favicons?domain=shapeways.com"
       Shapeways
 
-%h5 
+%h5
   Algorithms applied:
 %ul
   %li.text-success Close holes
