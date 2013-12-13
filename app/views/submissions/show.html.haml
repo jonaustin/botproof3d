@@ -23,13 +23,13 @@
   %div.span5
     %p.text-center
       %b Original Mesh:
-    = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}.stl?height=#{height}&width=#{width}"
+    = javascript_include_tag "https://embed.github.com/view/3d/jonaustin/botproof3d/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}.stl?height=#{height}&width=#{width}"
     = link_to "Download Original Mesh", @submission.image.to_s
 
   %div.span5.offset2
     %p.text-center
       %b Repaired Mesh:
-    = javascript_include_tag "https://embed.github.com/view/3d/weblaws/botproof/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}_repaired.stl?height=#{height}&width=#{width}"
+    = javascript_include_tag "https://embed.github.com/view/3d/jonaustin/botproof3d/master/meshes/#{@submission.id}/#{@submission.image.to_s.split('/').last}_repaired.stl?height=#{height}&width=#{width}"
     = link_to "Download Repaired Mesh", ("/assets/meshes/" + @submission.repair_image.split("/meshes/").last)
 
 %br

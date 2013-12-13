@@ -5,7 +5,7 @@ require "rvm/capistrano"
 ssh_options[:forward_agent] = true
 
 set :application, "botproof3d"
-set :repository,  "git@github.com:weblaws/botproof.git"
+set :repository,  "git@github.com:jonaustin/botproof3d.git"
 set :use_sudo, false
 set :deploy_via, :remote_cache
 
